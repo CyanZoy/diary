@@ -1,0 +1,86 @@
+{% load static %}
+<aside id="sidebar" class="sidebar" style="margin-top: 420px; margin-left: initial;">
+    <div class="sidebar-inner affix-top" style="opacity: 1; display: block; transform: initial;">
+        <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+            <div class="site-overview" style="max-height: 857px; width: calc(100% + 17px);">
+                <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+                    <img class="site-author-image" itemprop="image" src="{% static "images/design/author.jpg" %}" alt="author">
+                    <p class="site-author-name" itemprop="name">author</p>
+                    <p class="site-description motion-element" itemprop="description">这是一句签名</p>
+                </div>
+                <nav class="site-state motion-element">
+                    <div class="site-state-item site-state-posts">
+                        <a href="https://www.xncoding.com/archives/">
+                            <span class="site-state-item-count">189</span>
+                            <span class="site-state-item-name">日志</span>
+                        </a>
+                    </div>
+                    <div class="site-state-item site-state-categories">
+                        <a href="https://www.xncoding.com/categories/index.html">
+                            <span class="site-state-item-count">17</span>
+                            <span class="site-state-item-name">分类</span>
+                        </a>
+                    </div>
+                    <div class="site-state-item site-state-tags">
+                        <a href="https://www.xncoding.com/tags/index.html">
+                            <span class="site-state-item-count">87</span>
+                            <span class="site-state-item-name">标签</span>
+                        </a>
+                    </div>
+                </nav>
+{#                <div class="feed-link motion-element">#}
+{#                    <a href="https://www.xncoding.com/atom.xml" rel="alternate">#}
+{#                        <i class="fa fa-rss"></i>#}
+{#                        RSS#}
+{#                    </a>#}
+{#                </div>#}
+                <div class="links-of-author motion-element">
+{#                    <span class="links-of-author-item">#}
+{#                      <a href="https://github.com/yidao620c" target="_blank" title="GitHub">#}
+{#                          <i class="fa fa-fw fa-github"></i>GitHub</a>#}
+{#                    </span>#}
+                        <span class="links-of-author-item">
+                      <a href="http://weibo.com/yidao620" target="_blank" title="微博">
+                          <i class="fa fa-fw fa-weibo"></i>微博</a>
+                    </span>
+                </div>
+{#                <div class="links-of-blogroll motion-element links-of-blogroll-inline">#}
+{#                    <div class="links-of-blogroll-title">#}
+{#                        <i class="fa  fa-fw fa-link"></i>Links#}
+{#                    </div>#}
+{#                    <ul class="links-of-blogroll-list" style="list-style: none;">#}
+{#                        <li class="links-of-blogroll-item" style="margin-left: 8px; width:45%;">#}
+{#                            <a href="https://coolshell.cn/" title="酷壳" target="_blank">酷壳</a>#}
+{#                        </li>#}
+{#                        <li class="links-of-blogroll-item" style="margin-left: 8px; width:45%;">#}
+{#                            <a href="http://www.infoq.com/cn/" title="InfoQ" target="_blank">InfoQ</a>#}
+{#                        </li>#}
+{#                        <li class="links-of-blogroll-item" style="margin-left: 8px; width:45%;">#}
+{#                            <a href="http://blog.jobbole.com/" title="伯乐在线" target="_blank">伯乐在线</a>#}
+{#                        </li>#}
+{#                        <li class="links-of-blogroll-item" style="margin-left: 8px; width:45%;">#}
+{#                            <a href="http://www.cnblogs.com/" title="博客园" target="_blank">博客园</a>#}
+{#                        </li>#}
+{#                    </ul>#}
+{#                </div>#}
+            </div>
+        </section>
+    </div>
+</aside>
+<script>
+$(document).ready(function(){//在文档加载完毕后执行
+	$(window).scroll(function(){//开始监听滚动条
+                //获取当前滚动条高度
+		var topp = $(document).scrollTop();
+		if(topp > 415){
+			var d = $('.affix-top');
+            d.removeClass('affix-top');
+            d.addClass('affix');
+		}else if(topp <= 415){
+		    var e = $('.affix');
+            e.removeClass('affix');
+            e.addClass('affix-top');
+        }
+	})
+})
+</script>

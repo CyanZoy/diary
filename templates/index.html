@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+{% load static %}
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+    {% include "base/css.html" %}
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="theme-color" content="#222">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="description" content="这里要写啥我不是很清楚 →_→">
+    {#    <meta property="og:type" content="website">#}
+    {#    <meta property="og:title" content="会飞的污熊">#}
+    {#    <meta property="og:url" content="https:// /index.html">#}
+    {#    <meta property="og:site_name" content="会飞的污熊">#}
+    {#    <meta property="og:description" content="这里要写啥我不是很清楚 →_→">#}
+    {#    <meta property="og:locale" content="zh-Hans">#}
+    {#    <meta name="twitter:card" content="summary">#}
+    {#    <meta name="twitter:title" content="会飞的污熊">#}
+    {#    <meta name="twitter:description" content="这里要写啥我不是很清楚 →_→">#}
+
+    <script type="text/javascript" defer="" async="" src="{% static "js/uaest.js" %}"></script>
+    <script>//remove 17173 video ad
+    doAdblock();
+
+    function doAdblock() {
+        (function () {
+            function A() {
+            }
+
+            A.prototype = {
+                rules: {
+                    '17173_in': {
+                        'find': /http:\/\/f\.v\.17173cdn\.com\/(\d+\/)?flash\/PreloaderFile(Customer)?\.swf/,
+                        'replace': "http://swf.adtchrome.com/17173_in_20150522.swf"
+                    },
+                    '17173_out': {
+                        'find': /http:\/\/f\.v\.17173cdn\.com\/(\d+\/)?flash\/PreloaderFileFirstpage\.swf/,
+                        'replace': "http://swf.adtchrome.com/17173_out_20150522.swf"
+                    },
+                    '17173_live': {
+                        'find': /http:\/\/f\.v\.17173cdn\.com\/(\d+\/)?flash\/Player_stream(_firstpage)?\.swf/,
+                        'replace': "http://swf.adtchrome.com/17173_stream_20150522.swf"
+                    },
+                    '17173_live_out': {
+                        'find': /http:\/\/f\.v\.17173cdn\.com\/(\d+\/)?flash\/Player_stream_(custom)?Out\.swf/,
+                        'replace': "http://swf.adtchrome.com/17173.out.Live.swf"
+                    }
+                },
+                _done: null,
+                get done() {
+                    if (!this._done) {
+                        this._done = new Array();
+                    }
+                    return this._done;
+                },
+                addAnimations: function () {
+                    var style = document.createElement('style');
+                    style.type = 'text/css';
+                    style.innerHTML = 'object,embed{\
+                -webkit-animation-duration:.001s;-webkit-animation-name:playerInserted;\
+                -ms-animation-duration:.001s;-ms-animation-name:playerInserted;\
+                -o-animation-duration:.001s;-o-animation-name:playerInserted;\
+                animation-duration:.001s;animation-name:playerInserted;}\
+                @-webkit-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+                @-ms-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+                @-o-keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}\
+                @keyframes playerInserted{from{opacity:0.99;}to{opacity:1;}}';
+                    document.getElementsByTagName('head')[0].appendChild(style);
+                },
+                animationsHandler: function (e) {
+                    if (e.animationName === 'playerInserted') {
+                        this.replace(e.target);
+                    }
+                },
+                replace: function (elem) {
+                    if (this.done.indexOf(elem) != -1) return;
+                    this.done.push(elem);
+                    var player = elem.data || elem.src;
+                    if (!player) return;
+                    var i, find, replace = false;
+                    for (i in this.rules) {
+                        find = this.rules[i]['find'];
+                        if (find.test(player)) {
+                            replace = this.rules[i]['replace'];
+                            if ('function' === typeof this.rules[i]['preHandle']) {
+                                this.rules[i]['preHandle'].bind(this, elem, find, replace, player)();
+                            } else {
+                                this.reallyReplace.bind(this, elem, find, replace)();
+                            }
+                            break;
+                        }
+                    }
+                },
+                reallyReplace: function (elem, find, replace) {
+                    elem.data && (elem.data = elem.data.replace(find, replace)) || elem.src && ((elem.src = elem.src.replace(find, replace)) && (elem.style.display = 'block'));
+                    var b = elem.querySelector("param[name='movie']");
+                    this.reloadPlugin(elem);
+                },
+                reloadPlugin: function (elem) {
+                    var nextSibling = elem.nextSibling;
+                    var parentNode = elem.parentNode;
+                    parentNode.removeChild(elem);
+                    var newElem = elem.cloneNode(true);
+                    this.done.push(newElem);
+                    if (nextSibling) {
+                        parentNode.insertBefore(newElem, nextSibling);
+                    } else {
+                        parentNode.appendChild(newElem);
+                    }
+                },
+                init: function () {
+                    var handler = this.animationsHandler.bind(this);
+                    document.body.addEventListener('webkitAnimationStart', handler, false);
+                    document.body.addEventListener('msAnimationStart', handler, false);
+                    document.body.addEventListener('oAnimationStart', handler, false);
+                    document.body.addEventListener('animationstart', handler, false);
+                    this.addAnimations();
+                }
+            };
+            new A().init();
+        })();
+    }
+
+    //remove baidu search ad
+    if (document.URL.indexOf('www.baidu.com') >= 0) {
+        if (document && document.getElementsByTagName && document.getElementById && document.body) {
+            var aa = function () {
+                var all = document.body.querySelectorAll("#content_left div,#content_left table");
+                for (var i = 0; i < all.length; i++) {
+                    if (/display:\s?(table|block)\s!important/.test(all[i].getAttribute("style"))) {
+                        all[i].style.display = "none";
+                        all[i].style.visibility = 'hidden';
+                    }
+                }
+                all = document.body.querySelectorAll('.result.c-container[id="1"]');
+                //if(all.length == 1) return;
+                for (var i = 0; i < all.length; i++) {
+                    if (all[i].innerHTML && all[i].innerHTML.indexOf('广告') > -1) {
+                        all[i].style.display = "none";
+                        all[i].style.visibility = 'hidden';
+                    }
+                }
+            }
+            aa();
+            document.getElementById('wrapper_wrapper').addEventListener('DOMSubtreeModified', aa)
+        }
+        ;
+    }
+    //remove sohu video ad
+    if (document.URL.indexOf("tv.sohu.com") >= 0) {
+        if (document.cookie.indexOf("fee_status=true") == -1) {
+            document.cookie = 'fee_status=true'
+        }
+        ;
+    }
+    //remove 56.com video ad
+    if (document.URL.indexOf("56.com") >= 0) {
+        if (document.cookie.indexOf("fee_status=true") == -1) {
+            document.cookie = 'fee_status=true'
+        }
+        ;
+    }
+    //fore iqiyi enable html5 player function
+    if (document.URL.indexOf("iqiyi.com") >= 0) {
+        if (document.cookie.indexOf("player_forcedType=h5_VOD") == -1) {
+            document.cookie = 'player_forcedType=h5_VOD'
+            if (localStorage.reloadTime && Date.now() - parseInt(localStorage.reloadTime) < 60000) {
+                console.log('no reload')
+            } else {
+                location.reload()
+                localStorage.reloadTime = Date.now();
+            }
+        }
+    }
+    </script>
+    <style type="text/css">object, embed {
+        -webkit-animation-duration: .001s;
+        -webkit-animation-name: playerInserted;
+        -ms-animation-duration: .001s;
+        -ms-animation-name: playerInserted;
+        -o-animation-duration: .001s;
+        -o-animation-name: playerInserted;
+        animation-duration: .001s;
+        animation-name: playerInserted;
+    }
+
+    @-webkit-keyframes playerInserted {
+        from {
+            opacity: 0.99;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @-ms-keyframes playerInserted {
+        from {
+            opacity: 0.99;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @-o-keyframes playerInserted {
+        from {
+            opacity: 0.99;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes playerInserted {
+        from {
+            opacity: 0.99;
+        }
+        to {
+            opacity: 1;
+        }
+    }</style>
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+<div class="container sidebar-position-left page-home">
+    <div class="headband"></div>
+    {% include "base/navigation.html" %}
+    <main id="main" class="main">
+        <div class="main-inner">
+            <div class="content-wrap">
+                <div id="content" class="content">
+                    <section id="posts" class="posts-expand">
+                        <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+                            <div class="post-block" style="opacity: 1; display: block;">
+                                <link itemprop="mainEntityOfPage" href="https://www.xncoding.com/2018/04/05/java/reactor.html">
+                                <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+                                  <meta itemprop="name" content="香菜">
+                                  <meta itemprop="description" content="">
+                                  <meta itemprop="image" content="/uploads/avatar.png">
+                                </span>
+                                <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+                                  <meta itemprop="name" content="香菜烤地瓜">
+                                </span>
+                                <header class="post-header" style="opacity: 1; display: block; transform: translateY(0px);">
+                                    <h1 class="post-title" itemprop="name headline">
+                                        <a class="post-title-link" href="https://www.xncoding.com/2018/04/05/java/reactor.html" itemprop="url">
+                                            聊聊ReactorI/O模型</a>
+                                    </h1>
+                                    <div class="post-meta">
+                                      <span class="post-time">
+                                          <span class="post-meta-item-icon">
+                                            <i class="fa icon-time"></i>
+                                          </span>
+                                          <span class="post-meta-item-text">发表于</span>
+                                          <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-05T09:23:12+08:00">
+                                            2018-04-05
+                                          </time>
+                                      </span>
+                                      <span class="post-category">
+                                        <span class="post-meta-divider">|</span>
+                                          <span class="post-meta-item-icon">
+                                            <i class="fa icon-floder-close"></i>
+                                          </span>
+                                          <span class="post-meta-item-text">分类于</span>
+                                            <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                                              <a href="https://www.xncoding.com/categories/java/" itemprop="url" rel="index">
+                                                <span itemprop="name">java</span>
+                                              </a>
+                                            </span>
+                                      </span>
+                                      <span id="/2018/04/05/java/reactor.html" class="leancloud_visitors" data-flag-title="聊聊Reactor I/O模型">
+                                       <span class="post-meta-divider">|</span>
+                                       <span class="post-meta-item-icon">
+                                         <i class="fa icon-eye"></i>
+                                       </span>
+                                         <span class="post-meta-item-text">阅读次数:</span>
+                                         <span class="leancloud-visitors-count">1617</span>
+                                      </span>
+                                    </div>
+                                </header>
+                                <div class="post-body" itemprop="articleBody" style="opacity: 1; display: block; transform: translateY(0px);">
+                                    <p>上一篇介绍了Unix系统支持的I/O模型，以及相应的在Java中的实现方式。本篇重点讲解一下Reactor模型原理和实现机制。</p>
+                                    <p>I/O多路复用又被称为“事件驱动”，就是通过一种机制，一个进程可以监视多个描述符，一旦某个描述符就绪（一般是读就绪或者写就绪），
+                                        能够通知程序进行相应的读写操作，技术上是通过调用操作系统的select、pselect、poll、epoll来实现。</p>
+                                    <p>与多进程和多线程技术相比，I/O多路复用技术的最大优势是系统开销小，系统不必创建进程/线程，也不必维护这些进程/线程，从而大大减小了系统的开销。</p>
+                                    <p>Reactor是一种应用在服务器端的开发模式，目的是提高服务端程序的并发能力，其实就是实现了I/O多路复用这种I/O模型。
+                                        <!--noindex-->
+                                    </p>
+                                    <div class="post-button text-center">
+                                        <a class="btn" href="https://www.xncoding.com/2018/04/05/java/reactor.html#more" rel="contents">
+                                            阅读全文 »
+                                        </a>
+                                    </div>
+                                    <!--/noindex-->
+                                </div>
+                                <footer class="post-footer">
+                                    <div class="post-eof"></div>
+                                </footer>
+                            </div>
+                        </article>
+                        <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+
+
+                            <div class="post-block" style="opacity: 1; display: block;">
+                                <link itemprop="mainEntityOfPage"
+                                      href="https://www.xncoding.com/2018/04/02/java/io.html">
+
+                                <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="熊能">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+                                <span hidden="" itemprop="publisher" itemscope=""
+                                      itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会飞的污熊">
+    </span>
+
+
+                                <header class="post-header"
+                                        style="opacity: 1; display: block; transform: translateY(0px);">
+
+
+                                    <h1 class="post-title" itemprop="name headline">
+
+                                        <a class="post-title-link"
+                                           href="https://www.xncoding.com/2018/04/02/java/io.html" itemprop="url">聊聊Java中的几种I/O模型</a>
+                                    </h1>
+
+
+                                    <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-02T12:07:42+08:00">
+                2018-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+
+                                        <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="https://www.xncoding.com/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+
+
+                                        <span id="/2018/04/02/java/io.html" class="leancloud_visitors"
+                                              data-flag-title="聊聊Java中的几种I/O模型">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数:</span>
+               
+                 <span class="leancloud-visitors-count">2083</span>
+             </span>
+
+
+                                    </div>
+                                </header>
+
+
+                                <div class="post-body" itemprop="articleBody"
+                                     style="opacity: 1; display: block; transform: translateY(0px);">
+
+
+                                    <p>同步、异步、阻塞、非阻塞都是和I/O（输入输出）有关的概念，最简单的文件读取就是I/O操作。而在文件读取这件事儿上，可以有多种方式。</p>
+                                    <p>本篇会先介绍一下I/O的基本概念，通过一个生活例子来分别解释下这几种I/O模型，以及Java支持的I/O模型。
+                                        <!--noindex-->
+                                    </p>
+                                    <div class="post-button text-center">
+                                        <a class="btn" href="https://www.xncoding.com/2018/04/02/java/io.html#more"
+                                           rel="contents">
+                                            阅读全文 »
+                                        </a>
+                                    </div>
+                                    <!--/noindex-->
+
+
+                                </div>
+
+
+                                <footer class="post-footer">
+
+
+                                    <div class="post-eof"></div>
+
+                                </footer>
+                            </div>
+
+
+                        </article>
+                        <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+
+
+                            <div class="post-block" style="opacity: 1; display: block;">
+                                <link itemprop="mainEntityOfPage"
+                                      href="https://www.xncoding.com/2018/03/12/fullstack/nginx-websocket.html">
+
+                                <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="熊能">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+                                <span hidden="" itemprop="publisher" itemscope=""
+                                      itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会飞的污熊">
+    </span>
+
+
+                                <header class="post-header"
+                                        style="opacity: 1; display: block; transform: translateY(0px);">
+
+
+                                    <h1 class="post-title" itemprop="name headline">
+
+                                        <a class="post-title-link"
+                                           href="https://www.xncoding.com/2018/03/12/fullstack/nginx-websocket.html"
+                                           itemprop="url">nginx反向代理WebSocket</a></h1>
+
+
+                                    <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-12T11:24:23+08:00">
+                2018-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+
+                                        <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="https://www.xncoding.com/categories/fullstack/" itemprop="url" rel="index">
+                    <span itemprop="name">fullstack</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+
+
+                                        <span id="/2018/03/12/fullstack/nginx-websocket.html" class="leancloud_visitors"
+                                              data-flag-title="nginx反向代理WebSocket">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数:</span>
+               
+                 <span class="leancloud-visitors-count">2211</span>
+             </span>
+
+
+                                    </div>
+                                </header>
+
+
+                                <div class="post-body" itemprop="articleBody"
+                                     style="opacity: 1; display: block; transform: translateY(0px);">
+
+
+                                    <p>WebSocket协议相比较于HTTP协议成功握手后可以多次进行通讯，直到连接被关闭。但是WebSocket中的握手和HTTP中的握手兼容，
+                                        它使用HTTP中的Upgrade协议头将连接从HTTP升级到WebSocket。这使得WebSocket程序可以更容易的使用现已存在的基础设施。</p>
+                                    <p>WebSocket工作在HTTP的80和443端口并使用前缀ws://或者wss://进行协议标注，在建立连接时使用HTTP/1.1的101状态码进行协议切换，
+                                        当前标准不支持两个客户端之间不借助HTTP直接建立Websocket连接。</p>
+                                    <p>更多Websocket的介绍可参考我写的 <a
+                                            href="https://www.xncoding.com/2017/05/03/web/websocket.html">聊一聊WebSocket</a>
+                                        一文。</p>
+                                    <p>开发小程序的时候需要用到WebSocket长连接和推送技术，但是必须使用wss，并且必须通过域名访问。这时候就需要用到nginx反向代理了。
+                                        <!--noindex-->
+                                    </p>
+                                    <div class="post-button text-center">
+                                        <a class="btn"
+                                           href="https://www.xncoding.com/2018/03/12/fullstack/nginx-websocket.html#more"
+                                           rel="contents">
+                                            阅读全文 »
+                                        </a>
+                                    </div>
+                                    <!--/noindex-->
+
+
+                                </div>
+
+
+                                <footer class="post-footer">
+
+
+                                    <div class="post-eof"></div>
+
+                                </footer>
+                            </div>
+
+
+                        </article>
+                        <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+
+
+                            <div class="post-block" style="opacity: 1; display: block;">
+                                <link itemprop="mainEntityOfPage"
+                                      href="https://www.xncoding.com/2017/12/12/weixin/ma-webview.html">
+
+                                <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="熊能">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+                                <span hidden="" itemprop="publisher" itemscope=""
+                                      itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="会飞的污熊">
+    </span>
+
+
+                                <header class="post-header"
+                                        style="opacity: 1; display: block; transform: translateY(0px);">
+
+
+                                    <h1 class="post-title" itemprop="name headline">
+
+                                        <a class="post-title-link"
+                                           href="https://www.xncoding.com/2017/12/12/weixin/ma-webview.html"
+                                           itemprop="url">小程序开发 - webview</a></h1>
+
+
+                                    <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-12T10:16:53+08:00">
+                2017-12-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+
+                                        <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="https://www.xncoding.com/categories/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/" itemprop="url"
+                     rel="index">
+                    <span itemprop="name">微信开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+
+
+                                        <span id="/2017/12/12/weixin/ma-webview.html" class="leancloud_visitors"
+                                              data-flag-title="小程序开发 - webview">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数:</span>
+               
+                 <span class="leancloud-visitors-count">7178</span>
+             </span>
+
+
+                                    </div>
+                                </header>
+
+
+                                <div class="post-body" itemprop="articleBody"
+                                     style="opacity: 1; display: block; transform: translateY(0px);">
+
+
+                                    <p>最近要做一个项目需要在小程序中打开外链，小程序最近开放了web-view组件，
+                                        可在里面内嵌自己写的H5页面，也就实现了打开外链的功能，但是有几个注意点。
+                                        这里记录一下，希望将来小程序能放开更多限制。
+                                        <!--noindex-->
+                                    </p>
+                                    <div class="post-button text-center">
+                                        <a class="btn"
+                                           href="https://www.xncoding.com/2017/12/12/weixin/ma-webview.html#more"
+                                           rel="contents">
+                                            阅读全文 »
+                                        </a>
+                                    </div>
+                                    <!--/noindex-->
+
+
+                                </div>
+
+
+                                <footer class="post-footer">
+
+
+                                    <div class="post-eof"></div>
+
+                                </footer>
+                            </div>
+
+
+                        </article>
+                    </section>
+
+                    <!--分页-->
+                    <nav class="pagination" style="opacity: 1; display: block;">
+                        <span class="page-number current">1</span><a class="page-number"
+                                                                     href="https://www.xncoding.com/page/2/">2</a><span
+                            class="space">…</span><a class="page-number" href="https://www.xncoding.com/page/19/">19</a><a
+                            class="extend next" rel="next" href="https://www.xncoding.com/page/2/"><i
+                            class="fa fa-angle-right"></i></a>
+                    </nav>
+                    <!--分页结束-->
+                </div>
+            </div>
+            <div class="sidebar-toggle">
+                <div class="sidebar-toggle-line-wrap">
+                    <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+                    <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+                    <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+                </div>
+            </div>
+            {% include "base/author.html" %}
+        </div>
+    </main>
+    {% include "base/footer.html" %}
+</div>
+
+
+<script type="text/javascript">
+    if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+        window.Promise = null;
+    }
+</script>
+
+
+<script type="text/javascript" src="{% static "js/index.js" %}"></script>
+
+<script type="text/javascript" src="{% static "js/fastclick.min.js" %}"></script>
+
+<script type="text/javascript" src="{% static "js/jquery.lazyload.js" %}"></script>
+
+{#<script type="text/javascript" src="/velocity.min.js"></script>#}
+{##}
+{#<script type="text/javascript" src="/velocity.ui.min.js"></script>#}
+
+<script type="text/javascript" src="/jquery.fancybox.pack.js"></script>
+
+<script type="text/javascript" src="{% static "js/utils.js" %}"></script>
+
+<script type="text/javascript" src="{% static "js/motion.js" %}"></script>
+
+<script type="text/javascript" src="{% static "js/affix.js" %}"></script>
+
+<script type="text/javascript" src="{% static "js/pisces.js" %}"></script>
+
+<script type="text/javascript" src="{% static "js/bootstrap.js" %}"></script>
+
+<!-- LOCAL: You can save these files to your site and update links -->
+
+<link rel="stylesheet" href="{% static "css/default.css" %}">
+<script src="/gitmint.browser.js"></script>
+
+<!-- END LOCAL -->
+
+<link rel="stylesheet" href="{% static "css/instantsearch.min.css" %}">
+
+<script src="{% static "css/instantsearch.min.css" %}"></script>
+
+<script src="{% static "js/algolia-search.js" %}"></script>
+
+</body>
+</html>
